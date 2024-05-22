@@ -65,7 +65,7 @@ void champsim::plain_printer::print(CACHE::stats_type stats)
       TOTAL_MISS += stats.misses.at(type.second).at(cpu);
     }
 
-    fmt::print(stream, "{} TOTAL        ACCESS: {:10d} HIT: {:10d} MISS: {:10d}\n", stats.name, TOTAL_HIT + TOTAL_MISS, TOTAL_HIT, TOTAL_MISS);
+    fmt::print(stream, "{} TOTAL        ACCESS: {:10d} HIT: {:10d} MISS: {:10d} HIT RATE: {:4g}\n", stats.name, TOTAL_HIT + TOTAL_MISS, TOTAL_HIT, TOTAL_MISS, static_cast<double>(TOTAL_HIT) /  static_cast<double>(TOTAL_HIT + TOTAL_MISS));
     for (const auto& type : types) {
       fmt::print(stream, "{} {:<12s} ACCESS: {:10d} HIT: {:10d} MISS: {:10d}\n", stats.name, type.first,
                  stats.hits[type.second][cpu] + stats.misses[type.second][cpu], stats.hits[type.second][cpu], stats.misses[type.second][cpu]);
